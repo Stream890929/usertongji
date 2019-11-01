@@ -17,6 +17,18 @@
 	</insert>
 
 	<select id="selectAll" resultType="com.qfedu.entity.User">
-		select * from t_originuser
+		select * from t_originuser;
+	</select>
+
+	<select id="selectOrigins" resultType="java.lang.String">
+		SELECT origin FROM t_originuser GROUP BY origin;
+	</select>
+
+	<select id="selectDay" resultType="com.qfedu.vo.TongjiBean">
+		SELECT COUNT(*) VALUE,origin name FROM t_originuser WHERE date_format(rtime,'%Y-%m-%d')=#{day} GROUP BY origin;
+	</select>
+
+	<select id="selectMonth" resultType="com.qfedu.vo.TongjiBean">
+		SELECT COUNT(*) VALUE,origin name FROM t_originuser WHERE date_format(rtime,'%Y-%m')=#{month} GROUP BY origin;
 	</select>
 </mapper>
